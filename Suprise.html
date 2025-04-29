@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Cake for Cosmo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+        background-color: #FED2E2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Header/Nav Styles */
+      header {
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+      }
+
+      .logo {
+        height: 40px;
+        width: auto;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #ddd;
+      }
+
+      .nav-links a {
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: background 0.3s;
+      }
+
+      .nav-links a:hover {
+        background-color: #f0f0f0;
+      }
+
+      .hamburger {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+      }
+
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+          flex-direction: row;
+          position: static;
+          background: none;
+          border: none;
+        }
+
+        .nav-links a {
+          padding: 10px 15px;
+        }
+
+        .hamburger {
+          display: none;
+        }
+      }
+      h1{
+      background-color: #8F87F1;
+        color: #fff;
+        text-align: center;
+        padding: 20px 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(143, 135, 241, 0.3);}
+      /* Cake Section (Unchanged) */
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .container {
+        width: min(400px, 90%);
+        height: min(400px, 80vw);
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 20px 45px rgba(120, 76, 10, 0.25);
+        position: relative;
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cake {
+        width: 100%;
+        position: absolute;
+        bottom: 15%;
+        transition: all 0.5s ease;
+      }
+
+      .cake.hidden {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      .bottom-layer,
+      .top-layer,
+      .middle-layer {
+        height: clamp(50px, 15vw, 80px);
+        width: clamp(180px, 60vw, 240px);
+        position: relative;
+        margin: auto;
+        background-repeat: repeat;
+        background-size: 100% 100%, 60px 100px;
+        background-position: 28px 0;
+        background-image: linear-gradient(
+            transparent 50px,
+            #e3a953 50px,
+            #e3a953 60px,
+            transparent 60px
+          ),
+          radial-gradient(circle at 30px 5px, #713e16 30px, #eac284 31px);
+        border-radius: 8px;
+      }
+
+      .middle-layer {
+        transform: scale(0.85);
+        top: 72px;
+        animation: rise-1 2s forwards;
+      }
+
+      @keyframes rise-1 {
+        100% {
+          top: 7px;
+        }
+      }
+
+      .top-layer {
+        transform: scale(0.7);
+        top: 144px;
+        animation: rise-2 2s 2s forwards;
+      }
+
+      @keyframes rise-2 {
+        100% {
+          top: 26px;
+        }
+      }
+
+      .candle {
+        background: repeating-linear-gradient(
+          45deg,
+          #fd3018 0,
+          #fd3018 5px,
+          #ffa89e 5px,
+          #ffa89e 10px
+        );
+        height: clamp(35px, 12vw, 45px);
+        width: clamp(10px, 4vw, 15px);
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation: rise-3 1s 4s forwards;
+        border-radius: 4px 4px 0 0;
+      }
+
+      @keyframes rise-3 {
+        100% {
+          bottom: 202px;
+        }
+      }
+
+      .candle:after {
+        content: "";
+        position: absolute;
+        height: clamp(12px, 4vw, 16px);
+        width: clamp(12px, 4vw, 16px);
+        background-color: #ffee54;
+        border-radius: 0 50% 50% 50%;
+        transform: scale(0) rotate(45deg);
+        bottom: 50px;
+        left: -0.5px;
+        animation: flame 1.5s 5s forwards;
+        filter: drop-shadow(0 0 8px #ff9900);
+      }
+
+      @keyframes flame {
+        100% {
+          transform: scale(1) rotate(45deg);
+        }
+      }
+
+      .confetti {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10;
+        opacity: 0;
+        animation: showConfetti 0.5s 6s forwards;
+      }
+
+      @keyframes showConfetti {
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+        animation: confetti-fall 3s linear infinite;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(500px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .cake-finished {
+        position: absolute;
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        font-weight: bold;
+        color: #713e16;
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.5s ease;
+        text-transform: uppercase;
+        padding: 20px;
+      }
+
+      .cake-finished.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      footer {
+        background-color: #C68EFD;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        border-top: 5px solid #fff;
+        transform: translateY(100%);
+        opacity: 0;
+        animation: slideUp 1s 6.5s forwards;
+        box-shadow: 0 -4px 12px rgba(198, 142, 253, 0.3);
+      }
+
+      @keyframes slideUp {
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      footer h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      footer button {
+        background-color: #f0f0f0;
+        border: none;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        padding: 10px 25px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        color: #423ba5;
+        min-width: 100px;
+      }
+
+      footer button:hover {
+        background-color: #FED2E2;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      footer button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar/Header -->
+    <header>
+      <a href="cosmohome.html">
+        <img src="WhatsApp_Image_2025-04-26_at_23.10.22_fcf6f0c9-removebg-preview (1).png" alt="Logo" class="logo" />
+      </a>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="Letter.html">Letter</a>
+        <a href="Suprise.html">Suprise</a>
+      </nav>
+    </header>
+<div>
+    <h1>CAKE FOR  COSMO</h1>
+
+  </div>
+    <!-- Cake Section -->
+    <div class="main-content">
+      <div class="container">
+        <div class="cake">
+          <div class="candle"></div>
+          <div class="top-layer"></div>
+          <div class="middle-layer"></div>
+          <div class="bottom-layer"></div>
+        </div>
+        <div class="confetti" id="confetti"></div>
+        <div class="cake-finished" id="cakeFinished">CAKE KHTM HO GYA COSMO</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <h1>CAKE KHANA HAI?</h1>
+      <div class="button-container">
+        <button id="yesBtn">YES</button>
+        <button id="noBtn">NO</button>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const confettiContainer = document.getElementById('confetti');
+        const colors = ['#8F87F1', '#C68EFD', '#E9A5F1', '#FED2E2'];
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti-piece';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 3 + 's';
+          confetti.style.width = Math.random() * 8 + 5 + 'px';
+          confetti.style.height = Math.random() * 8 + 5 + 'px';
+          confettiContainer.appendChild(confetti);
+        }
+
+        const yesBtn = document.getElementById('yesBtn');
+        const cake = document.querySelector('.cake');
+        const cakeFinished = document.getElementById('cakeFinished');
+
+        yesBtn.addEventListener('click', function () {
+          cake.classList.add('hidden');
+          setTimeout(() => {
+            cakeFinished.classList.add('show');
+          }, 500);
+        });
+
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('click', function () {
+          alert('Aapka cake abhi baki hai! 🎂');
+        });
+      });
+    </script>
+  <script src="main.js"></script>
+  </body>
+</html>
