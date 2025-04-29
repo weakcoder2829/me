@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Love Letter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('download (1).jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    .nav-links a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+        border: none;
+      }
+
+      .nav-links a {
+        padding: 10px 15px;
+      }
+
+      .hamburger {
+        display: none;
+      }
+    }
+
+    .letter-container {
+      width: 80%;
+      max-width: 700px;
+      background: #fff5f5;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      margin-top: 20px;
+      height: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #cc3366;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      margin-top: 30px;
+      font-size: 20px;
+      color: #b30059;
+    }
+
+    big {
+      font-size: 1.2em;
+      display: block;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .letter-container {
+        padding: 15px;
+        width: 90%;
+        height: 80%;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .signature {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .letter-container {
+        padding: 10px;
+        width: 95%;
+        height: 70%;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      .signature {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <a href="cosmohome.html">
+      <img src="WhatsApp_Image_2025-04-26_at_23.10.22_fcf6f0c9-removebg-preview (1).png" alt="Logo" class="logo">
+    </a>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="Letter.html">Letter</a>
+      <a href="Suprise.html">suprise</a>
+    </nav>
+  </header>
+
+  <!-- Love Letter -->
+  <div class="letter-container">
+    <h1>To my dearest love</h1>
+    <p>My sweetheart, Cosmo.</p>
+    <p>How are you, my girl? Are you good? Na.
+    I am sending this to you because today is Rose Day, and I am starting my website for your birthday.</p>
+    <p>Also, one thing: I want to represent my love in science and math terms:</p>
+    <p>In science, you are my water (H<sub>2</sub>O), and in math, you are my Pythagorean theorem (b<sup>2</sup> = c<sup>2</sup>).</p>
+    <p><strong>->I love you, Cosmo.</strong></p>
+    <p><u>->I love you, Cosmo.</u></p>
+    <p><em>->I love you, Cosmo.</em></p>
+    <p>This is the information about Cosmo's fav. things:</p>
+    <p>->Karela.</p>
+    <p>->Karan.</p>
+    <p>In your eyes, I find my home; in your heart, I find my dreams. No matter where life takes us, as long as I have you by my side, every journey becomes an enchanting adventure.</p>
+    <p class="signature">Forever yours,<br> Your Mast Magan</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
